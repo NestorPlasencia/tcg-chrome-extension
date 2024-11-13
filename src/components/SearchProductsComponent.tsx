@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { searchProducts } from '../services/apiService';
-import { SearchResponse, SearchRequestBody } from '../types/types';
+import { SearchRequestBody, Product } from '../types/types';
 import { useSession } from '../context/SessionContext';
+import { Table } from './Table'; // Importa el componente Table
 
 export function SearchProductsComponent(): JSX.Element {
   const { sessionId } = useSession();
-  const [data, setData] = useState<SearchResponse | null>(null);
+  const [products, setProducts] = useState<Product[]>([]);
 
   useEffect(() => {
-    const fetchDataAsync = async () => {
+    if (sessionId) {
       try {
         const requestBody: SearchRequestBody = {
           size: 20,
@@ -34,11 +35,9 @@ export function SearchProductsComponent(): JSX.Element {
           sessionId: sessionId || '',
         };
 
-        const urlParams = "isList=true&mpfev=2933";
-
-        searchProducts(requestBody, urlParams)
-          .then((data: SearchResponse) => {
-            setData(data);
+        searchProducts(requestBody)
+          .then((data: Product[]) => {
+            setProducts(data);
           })
           .catch((error: Error) => {
             console.error('Error:', error);
@@ -46,16 +45,24 @@ export function SearchProductsComponent(): JSX.Element {
       } catch (error) {
         console.error('Error:', error);
       }
-    };
-
-    if (sessionId) {
-      fetchDataAsync();
     }
   }, [sessionId]);
 
+
+  const headers = ['Product Name', 'Market Price', 'Rarity', 'Set Name', 'Release Date'];
+  const data = products.map((product: Product) => [
+    product.productName,
+    product.marketPrice,
+    product.customAttributes?.rarityDbName || '',
+    product.setName,
+    product.customAttributes?.releaseDate || '',
+  ]) || [];
+
   return (
     <div>
-      {data && <pre className="text-left">{JSON.stringify(data, null, 2)}</pre>}
+      {products && (
+        <Table headers={headers} data={data} />
+      )}
     </div>
   );
 }

@@ -1,14 +1,14 @@
-
 import React, { useEffect, useState } from 'react';
 import { fetchLatestSets } from '../services/apiService';
-import { CategoryLatestSets } from '../types/types';
+import { LatestSetsByCategory } from '../types/types';
+import { Table } from './Table';
 
 export function LatestSetsComponent(): JSX.Element {
-  const [categoryLatestSets, setLatestSets] = useState<CategoryLatestSets[]>([]);
+  const [categoryLatestSets, setLatestSets] = useState<LatestSetsByCategory[]>([]);
 
   useEffect(() => {
     fetchLatestSets([3])
-      .then((sets: CategoryLatestSets[]) => {
+      .then((sets: LatestSetsByCategory[]) => {
         setLatestSets(sets);
       })
       .catch((error: Error) => {
@@ -16,15 +16,24 @@ export function LatestSetsComponent(): JSX.Element {
       });
   }, []);
 
+  const headers = ['Set Name', 'Clean Set Name', 'Release Date', 'Is Featured Set', 'Is Pre-Order'];
+
   return (
     <div>
       {categoryLatestSets.length > 0 && 
         categoryLatestSets.map((category, index) => (
           <div key={index}>
-            {category.categoryId}
-            {category.latestSets.map((set, setIndex) => (
-              <div key={setIndex}>{set.setName}</div>
-            ))}
+            <h3>Category ID: {category.categoryId}</h3>
+            <Table
+              headers={headers}
+              data={category.latestSets.map(set => [
+                set.setName,
+                set.cleanSetName,
+                set.releaseDate,
+                set.isFeaturedSet,
+                set.isPreOrder
+              ])}
+            />
           </div>
         ))
       }

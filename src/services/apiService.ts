@@ -1,44 +1,88 @@
 import {
-  SearchResponse,
+  SearchRequestResponse,
   SearchRequestBody,
-  CategoryLatestSets,
+  LatestSetsByCategory,
+  GetProductsForSkusResponse,
+  ProductLine,
+  Product,
 } from "../types/types";
-import { HEADERS } from "../constants/constants";
+import { HEADERS, API_ROOT } from "../constants/constants";
 
-export const searchProducts = async (
-  requestBody: SearchRequestBody,
-  urlParams: string
-): Promise<SearchResponse> => {
-  const response = await fetch(
-    `https://mp-search-api.tcgplayer.com/v1/search/product?${urlParams}`,
-    {
-      headers: HEADERS,
-      body: JSON.stringify(requestBody),
-      method: "POST",
-    }
-  );
+async function fetchFromApi<T>(
+  url: string,
+  method: "GET" | "POST",
+  body: string = ""
+): Promise<T> {
+  const response = await fetch(url, {
+    headers: HEADERS,
+    body: body || null,
+    method,
+  });
+
   if (!response.ok) {
     throw new Error("Network response was not ok");
-  }
-  return response.json();
-};
-
-export async function fetchLatestSets(
-  ids: number[]
-): Promise<CategoryLatestSets[]> {
-  const idsParam = ids.join(",");
-  const response = await fetch(
-    `https://mp-search-api.tcgplayer.com/v1/product/latestsets/${idsParam}?mpfev=2933`,
-    {
-      headers: HEADERS,
-      body: null,
-      method: "GET",
-    }
-  );
-
-  if (!response.ok) {
-    throw new Error("Failed to fetch latest sets");
   }
 
   return response.json();
 }
+
+export async function fetchLatestSets(
+  ids: number[]
+): Promise<LatestSetsByCategory[]> {
+  const idsParam = ids.join(",");
+  const url = `${API_ROOT}/product/latestsets/${idsParam}?mpfev=2933`;
+  const method = "GET";
+  return fetchFromApi<LatestSetsByCategory[]>(url, method);
+}
+
+export async function getProductsForSkus(
+  skus: number[]
+): Promise<GetProductsForSkusResponse> {
+  const url = `${API_ROOT}/product/getProductForSkus?mpfev=2933`;
+  const method = "POST";
+  const body = JSON.stringify(skus);
+  return fetchFromApi<GetProductsForSkusResponse>(url, method, body);
+}
+
+export async function fetchProductLines(): Promise<ProductLine[]> {
+  const url = `${API_ROOT}/search/productLines?mpfev=2933`;
+  const method = "GET";
+
+  return fetchFromApi<ProductLine[]>(url, method);
+}
+
+export const fetchProductsByIds = async (
+  productIds: number[]
+): Promise<Product[]> => {
+  const url = `${API_ROOT}/search/request?mpfev=2933`;
+  const method = "POST";
+  const body = JSON.stringify({
+    from: 0,
+    size: 10,
+    filters: {
+      term: {
+        productId: productIds,
+      },
+    },
+  });
+  const response = await fetchFromApi<SearchRequestResponse>(url, method, body);
+  if (response.results?.length > 0) {
+    return response.results[0].results;
+  } else {
+    throw new Error("No products found");
+  }
+};
+
+export const searchProducts = async (
+  requestBody: SearchRequestBody
+): Promise<Product[]> => {
+  const url = `${API_ROOT}/search/product?isList=true&mpfev=2933`;
+  const method = "POST";
+  const body = JSON.stringify(requestBody);
+  const response = await fetchFromApi<SearchRequestResponse>(url, method, body);
+  if (response.results?.length > 0) {
+    return response.results[0].results;
+  } else {
+    throw new Error("No products found");
+  }
+};

@@ -48,7 +48,8 @@ export interface Product {
   productName: string;
   setId: number;
   productId: number;
-  medianPrice: number;
+  rarityName: string | null;
+  medianPrice: number | null;
   score: number;
   setName: string;
   foilOnly: boolean;
@@ -59,22 +60,60 @@ export interface Product {
   productStatusId: number;
   productLineName: string;
   maxFulfillableQuantity: number;
-  listings: unknown[];
+  listings: Listing[];
   lowestPrice: number;
 }
 
+export interface Listing {
+  directProduct: boolean;
+  goldSeller: boolean;
+  listingId: number;
+  channelId: number;
+  conditionId: number;
+  verifiedSeller: boolean;
+  directInventory: number;
+  rankedShippingPrice: number;
+  productId: number;
+  printing: string;
+  languageAbbreviation: string;
+  sellerName: string;
+  forwardFreight: boolean;
+  sellerShippingPrice: number;
+  language: string;
+  shippingPrice: number;
+  condition: string;
+  languageId: number;
+  score: number;
+  directSeller: boolean;
+  productConditionId: number;
+  sellerId: string;
+  listingType: string;
+  sellerRating: number;
+  sellerSales: string;
+  quantity: number;
+  sellerKey: string;
+  price: number;
+  customData: {
+    images: string[];
+  };
+}
+
 export interface SearchResponse {
-  errors: unknown[];
   results: Product[];
   aggregations: {
     setName: SetName[];
-    productTypeName: SetName[];
-    productLineName: SetName[];
+    productTypeName: ProductTypeName[];
+    productLineName: ProductLineName[];
   };
   algorithm: string;
   searchType: string;
   totalResults: number;
   resultId: string;
+}
+
+export interface SearchRequestResponse {
+  errors: unknown[];
+  results: SearchResponse[];
 }
 
 export interface SearchRequestBody {
@@ -109,7 +148,19 @@ export interface LatestSet {
   isPreOrder: boolean;
 }
 
-export interface CategoryLatestSets {
+export interface LatestSetsByCategory {
   categoryId: number;
   latestSets: LatestSet[];
+}
+
+export interface GetProductsForSkusResponse {
+  errors: unknown[];
+  results: Product[][];
+}
+
+export interface ProductLine {
+  productLineId: number;
+  productLineName: string;
+  productLineUrlName: string;
+  isDirect: boolean;
 }

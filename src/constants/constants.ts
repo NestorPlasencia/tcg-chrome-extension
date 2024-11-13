@@ -4,3 +4,5 @@ export const HEADERS = {
   "content-type": "application/json",
   TCG_VisitorKey: "", // Placeholder for the cookie value
 };
+
+export const API_ROOT = "https://mp-search-api.tcgplayer.com/v1";

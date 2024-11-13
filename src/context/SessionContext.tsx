@@ -17,6 +17,7 @@ export const SessionProvider: React.FC<{ children: React.ReactNode }> = ({ child
         const visitorKey = await getCookie("mpapi.tcgplayer.com", "TCG_VisitorKey");
         setSessionId(visitorKey);
       } catch (error) {
+        setSessionId("");
         console.error('Error fetching cookie:', error);
       }
     };
