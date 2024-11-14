@@ -6,3 +6,4 @@ export const HEADERS = {
 };
 
 export const API_ROOT = "https://mp-search-api.tcgplayer.com/v1";
+export const CATALOG_API_ROOT = "https://mpapi.tcgplayer.com/v2";

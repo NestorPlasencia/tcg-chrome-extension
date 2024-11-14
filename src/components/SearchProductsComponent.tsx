@@ -60,6 +60,7 @@ export function SearchProductsComponent(): JSX.Element {
 
   return (
     <div>
+      <h2>Search Products By Algorithm</h2>
       {products && (
         <Table headers={headers} data={data} />
       )}

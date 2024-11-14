@@ -10,7 +10,7 @@ export function ProductLinesComponent(): JSX.Element {
   useEffect(() => {
     fetchProductLines()
       .then((response) => {
-        setProductLines(response);
+        setProductLines(response.filter(a => [1, 2, 3, 23, 63, 68, 71, 80, 85].includes(a.productLineId)));
       })
       .catch((error: Error) => {
         console.error('Error fetching product lines:', error);

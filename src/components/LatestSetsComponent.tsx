@@ -20,7 +20,8 @@ export function LatestSetsComponent(): JSX.Element {
 
   return (
     <div>
-      {categoryLatestSets.length > 0 && 
+      <h2>Latests Sets from Pokemon</h2>
+      {categoryLatestSets.length > 0 &&
         categoryLatestSets.map((category, index) => (
           <div key={index}>
             <h3>Category ID: {category.categoryId}</h3>

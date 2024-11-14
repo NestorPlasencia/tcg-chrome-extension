@@ -164,3 +164,11 @@ export interface ProductLine {
   productLineUrlName: string;
   isDirect: boolean;
 }
+
+export interface CatalogGroup {
+  catalogGroupId: number;
+  name: string;
+  displayName: string;
+  isDirect: boolean;
+  isActive: boolean;
+}

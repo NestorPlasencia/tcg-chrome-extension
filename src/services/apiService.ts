@@ -5,8 +5,9 @@ import {
   GetProductsForSkusResponse,
   ProductLine,
   Product,
+  CatalogGroup,
 } from "../types/types";
-import { HEADERS, API_ROOT } from "../constants/constants";
+import { HEADERS, API_ROOT, CATALOG_API_ROOT } from "../constants/constants";
 
 async function fetchFromApi<T>(
   url: string,
@@ -26,30 +27,36 @@ async function fetchFromApi<T>(
   return response.json();
 }
 
-export async function fetchLatestSets(
+export const fetchLatestSets = async (
   ids: number[]
-): Promise<LatestSetsByCategory[]> {
+): Promise<LatestSetsByCategory[]> => {
   const idsParam = ids.join(",");
   const url = `${API_ROOT}/product/latestsets/${idsParam}?mpfev=2933`;
   const method = "GET";
   return fetchFromApi<LatestSetsByCategory[]>(url, method);
-}
+};
 
-export async function getProductsForSkus(
+export const getProductsForSkus = async (
   skus: number[]
-): Promise<GetProductsForSkusResponse> {
+): Promise<GetProductsForSkusResponse> => {
   const url = `${API_ROOT}/product/getProductForSkus?mpfev=2933`;
   const method = "POST";
   const body = JSON.stringify(skus);
   return fetchFromApi<GetProductsForSkusResponse>(url, method, body);
-}
+};
 
-export async function fetchProductLines(): Promise<ProductLine[]> {
+export const fetchProductLines = async (): Promise<ProductLine[]> => {
   const url = `${API_ROOT}/search/productLines?mpfev=2933`;
   const method = "GET";
 
   return fetchFromApi<ProductLine[]>(url, method);
-}
+};
+
+export const fetchCatalogGroups = async (): Promise<CatalogGroup[]> => {
+  const url = `${CATALOG_API_ROOT}/Catalog/CatalogGroups?mpfev=2933`;
+  const method = "GET";
+  return fetchFromApi<CatalogGroup[]>(url, method);
+};
 
 export const fetchProductsByIds = async (
   productIds: number[]
