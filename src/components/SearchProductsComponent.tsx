@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { searchProducts } from '../services/apiService';
-import { SearchRequestBody, Product } from '../types/types';
+import { searchProducts } from '../services/tcgPlayer';
+import { SearchRequestBody, Product } from '../types/tcgplayer';
 import { useSession } from '../context/SessionContext';
 import { Table } from './Table'; // Importa el componente Table
 

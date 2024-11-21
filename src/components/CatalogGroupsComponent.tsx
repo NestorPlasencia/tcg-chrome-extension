@@ -1,7 +1,7 @@
 
 import React, { useEffect, useState } from 'react';
-import { fetchCatalogGroups } from '../services/apiService';
-import { CatalogGroup } from '../types/types';
+import { fetchCatalogGroups } from '../services/tcgPlayer';
+import { CatalogGroup } from '../types/tcgplayer';
 import { Table } from './Table';
 
 export function CatalogGroupsComponent(): JSX.Element {

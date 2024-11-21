@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { getProductsForSkus } from '../services/apiService';
-import { Product } from '../types/types';
+import { getProductsForSkus } from '../services/tcgPlayer';
+import { Product } from '../types/tcgplayer';
 import { Table } from './Table';
 
 export function ProductsForSkusComponent(): JSX.Element {

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { fetchLatestSets } from '../services/apiService';
-import { LatestSetsByCategory } from '../types/types';
+import { fetchLatestSets } from '../services/tcgPlayer';
+import { LatestSetsByCategory } from '../types/tcgplayer';
 import { Table } from './Table';
 
 export function LatestSetsComponent(): JSX.Element {

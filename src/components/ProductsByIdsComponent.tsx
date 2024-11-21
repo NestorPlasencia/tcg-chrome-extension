@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { fetchProductsByIds } from '../services/apiService';
-import { Product } from '../types/types';
+import { fetchProductsByIds } from '../services/tcgPlayer';
+import { Product } from '../types/tcgplayer';
 import { Table } from './Table';
 
 export function ProductsByIdsComponent(): JSX.Element {

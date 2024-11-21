@@ -1,7 +1,7 @@
 
 import React, { useEffect, useState } from 'react';
-import { fetchProductLines } from '../services/apiService';
-import { ProductLine } from '../types/types';
+import { fetchProductLines } from '../services/tcgPlayer';
+import { ProductLine } from '../types/tcgplayer';
 import { Table } from './Table';
 
 export function ProductLinesComponent(): JSX.Element {
