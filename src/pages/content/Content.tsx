@@ -5,7 +5,10 @@ import { ProductLines } from "@src/components/request/tcgplayer/ProductLines";
 import { ProductsByIds } from "@src/components/request/tcgplayer/ProductsByIds";
 import { CatalogGroups } from "@src/components/request/tcgplayer/CatalogGroups";
 import { useSession } from "@src/context/SessionContext";
+import { Games } from "@src/components/request/tcgcompare/Games";
 import { Categories } from "@src/components/request/tcgcompare/Categories";
+import { SubCategories } from "@src/components/request/tcgcompare/SubCategories";
+
 import { useState } from "react";
 
 export default function Content(): JSX.Element {
@@ -37,7 +40,10 @@ export default function Content(): JSX.Element {
       )}
       {isTcgCompareDomain && isExpanded &&(
         <>
+          <Games />
           <Categories />
+          <SubCategories />          
+
         </>
       )}
     </div>
