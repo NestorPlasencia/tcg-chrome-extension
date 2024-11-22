@@ -1,10 +1,10 @@
 
 import React, { useEffect, useState } from 'react';
-import { fetchProductLines } from '../services/tcgPlayer';
-import { ProductLine } from '../types/tcgplayer';
-import { Table } from './Table';
+import { fetchProductLines } from '@src/services/tcgPlayer';
+import { ProductLine } from '@src/types/tcgplayer';
+import { Table } from '@src/components/Table';
 
-export function ProductLinesComponent(): JSX.Element {
+export function ProductLines(): JSX.Element {
   const [productLines, setProductLines] = useState<ProductLine[]>([]);
 
   useEffect(() => {

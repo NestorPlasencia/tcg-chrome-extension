@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { searchProducts } from '../services/tcgPlayer';
-import { SearchRequestBody, Product } from '../types/tcgplayer';
-import { useSession } from '../context/SessionContext';
-import { Table } from './Table'; // Importa el componente Table
+import { searchProducts } from '@src/services/tcgPlayer';
+import { SearchRequestBody, Product } from '@src/types/tcgplayer';
+import { useSession } from '@src/context/SessionContext';
+import { Table } from '@src/components/Table';
 
-export function SearchProductsComponent(): JSX.Element {
-  const { sessionId } = useSession();
+export function SearchProducts(): JSX.Element {
+  const { tcgPlayerSessionId } = useSession();
   const [products, setProducts] = useState<Product[]>([]);
 
   useEffect(() => {
-    if (sessionId) {
+    if (tcgPlayerSessionId) {
       try {
         const requestBody: SearchRequestBody = {
           size: 20,
@@ -32,7 +32,7 @@ export function SearchProductsComponent(): JSX.Element {
               },
             },
           },
-          sessionId: sessionId || '',
+          sessionId: tcgPlayerSessionId || '',
         };
 
         searchProducts(requestBody)
@@ -46,7 +46,7 @@ export function SearchProductsComponent(): JSX.Element {
         console.error('Error:', error);
       }
     }
-  }, [sessionId]);
+  }, [tcgPlayerSessionId]);
 
 
   const headers = ['Product Name', 'Market Price', 'Rarity', 'Set Name', 'Release Date'];

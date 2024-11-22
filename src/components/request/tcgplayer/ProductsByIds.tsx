@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { fetchProductsByIds } from '../services/tcgPlayer';
-import { Product } from '../types/tcgplayer';
-import { Table } from './Table';
+import { fetchProductsByIds } from '@src/services/tcgPlayer';
+import { Product } from '@src/types/tcgplayer';
+import { Table } from '@src/components/Table';
 
-export function ProductsByIdsComponent(): JSX.Element {
+export function ProductsByIds(): JSX.Element {
   const [products, setProducts] = useState<Product[]>([]);
 
   useEffect(() => {

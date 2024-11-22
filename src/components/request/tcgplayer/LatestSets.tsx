@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { fetchLatestSets } from '../services/tcgPlayer';
-import { LatestSetsByCategory } from '../types/tcgplayer';
-import { Table } from './Table';
+import { fetchLatestSets } from '@src/services/tcgPlayer';
+import { LatestSetsByCategory } from '@src/types/tcgplayer';
+import { Table } from '@src/components/Table';
 
-export function LatestSetsComponent(): JSX.Element {
+export function LatestSets(): JSX.Element {
   const [categoryLatestSets, setLatestSets] = useState<LatestSetsByCategory[]>([]);
 
   useEffect(() => {

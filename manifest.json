@@ -18,8 +18,8 @@
   "icons": {
     "128": "icon-128.png"
   },
-  "host_permissions": ["*://*.tcgplayer.com/"],
-  "permissions": ["activeTab", "cookies"],
+  "host_permissions": ["*://*.tcgplayer.com/", "*://*.tcgcompare.com/"],
+  "permissions": ["cookies", "activeTab", "tabs", "scripting"],
   "content_scripts": [
     {
       "matches": ["http://*/*", "https://*/*", "<all_urls>"],

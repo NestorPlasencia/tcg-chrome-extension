@@ -1,10 +1,10 @@
 
 import React, { useEffect, useState } from 'react';
-import { fetchCatalogGroups } from '../services/tcgPlayer';
-import { CatalogGroup } from '../types/tcgplayer';
-import { Table } from './Table';
+import { fetchCatalogGroups } from '@src/services/tcgPlayer';
+import { CatalogGroup } from '@src/types/tcgplayer';
+import { Table } from '@src/components/Table';
 
-export function CatalogGroupsComponent(): JSX.Element {
+export function CatalogGroups(): JSX.Element {
     const [catalogGroups, setCatalogGroups] = useState<CatalogGroup[]>([]);
 
     useEffect(() => {

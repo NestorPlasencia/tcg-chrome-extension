@@ -3,16 +3,16 @@ import './style.css'
 const div = document.createElement('div');
 div.id = '__root';
 document.body.appendChild(div);
-import { SessionProvider } from '../../context/SessionContext';
+import { SessionProvider } from '@src/context/SessionContext';
 
-import Popup from '@pages/popup/Popup';
+import Content from '@pages/content/Content';
 
 const rootContainer = document.querySelector('#__root');
 if (!rootContainer) throw new Error("Can't find Content root element");
 const root = createRoot(rootContainer);
 root.render(
   <SessionProvider>
-    <Popup />
+    <Content />
   </SessionProvider>
 );
 

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { getProductsForSkus } from '../services/tcgPlayer';
-import { Product } from '../types/tcgplayer';
-import { Table } from './Table';
+import { getProductsForSkus } from '@src/services/tcgPlayer';
+import { Product } from '@src/types/tcgplayer';
+import { Table } from '@src/components/Table';
 
-export function ProductsForSkusComponent(): JSX.Element {
+export function ProductsForSkus(): JSX.Element {
   const [products, setProducts] = useState<Product[]>([]);
   const skus = [6927956, 5667282, 7432290]; 
 
