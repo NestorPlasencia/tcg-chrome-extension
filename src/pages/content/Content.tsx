@@ -9,6 +9,8 @@ import { Games } from "@src/components/request/tcgcompare/Games";
 import { Categories } from "@src/components/request/tcgcompare/Categories";
 import { SubCategories } from "@src/components/request/tcgcompare/SubCategories";
 import { Deals } from "@src/components/request/tcgcompare/Deals";
+import { Prices } from "@src/components/request/tcgcompare/Prices";
+import { PricesHistory } from "@src/components/request/tcgcompare/PricesHistory";
 
 import { useState } from "react";
 
@@ -41,10 +43,14 @@ export default function Content(): JSX.Element {
       )}
       {isTcgCompareDomain && isExpanded &&(
         <>
+          {/* 
           <Games />
           <Categories />
           <SubCategories />          
+          */}
           <Deals />
+          <Prices />
+          <PricesHistory />
         </>
       )}
     </div>
