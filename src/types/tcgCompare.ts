@@ -39,3 +39,33 @@ export interface SubCategory {
   image_path: string;
   product_count: number;
 }
+
+export interface Product {
+  id: number;
+  name: string;
+  slug: string;
+  sub_category: SubCategory | null;
+  category: {
+    name: string;
+    slug: string;
+    image_path: string;
+  };
+  game: {
+    name: string;
+    slug: string;
+    image_path: string;
+  };
+  image_path: string;
+  created_at: string;
+  country: {
+    code: string;
+    short_code: string;
+    currency_code: string;
+    currency_symbol: string;
+    name: string;
+    flag: string;
+  };
+  in_stock: boolean;
+  price: number;
+  average: number;
+}

@@ -1,5 +1,5 @@
 import { fetchFromApi } from "./apiService";
-import { Category, Game, SubCategory } from "../types/tcgCompare";
+import { Category, Game, SubCategory, Product } from "../types/tcgCompare";
 import {
   TCG_COMPARE_HEADERS,
   TCG_COMPARE_API_ROOT,
@@ -33,6 +33,17 @@ export const fetchTcgCompareSubCategories = async (
   const url = `${TCG_COMPARE_API_ROOT}/pokemon-tcg/sub-categories`;
   const method = "GET";
   return fetchFromApi<SubCategory[]>(url, method, {
+    ...TCG_COMPARE_HEADERS,
+    "x-xsrf-token": token,
+  });
+};
+
+export const fetchTcgCompareDeals = async (
+  token: string
+): Promise<Product[]> => {
+  const url = `${TCG_COMPARE_API_ROOT}/products/deals?country=USA&limit=50`;
+  const method = "GET";
+  return fetchFromApi<Product[]>(url, method, {
     ...TCG_COMPARE_HEADERS,
     "x-xsrf-token": token,
   });

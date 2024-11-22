@@ -8,6 +8,7 @@ import { useSession } from "@src/context/SessionContext";
 import { Games } from "@src/components/request/tcgcompare/Games";
 import { Categories } from "@src/components/request/tcgcompare/Categories";
 import { SubCategories } from "@src/components/request/tcgcompare/SubCategories";
+import { Deals } from "@src/components/request/tcgcompare/Deals";
 
 import { useState } from "react";
 
@@ -43,7 +44,7 @@ export default function Content(): JSX.Element {
           <Games />
           <Categories />
           <SubCategories />          
-
+          <Deals />
         </>
       )}
     </div>
