@@ -41,7 +41,7 @@ export const fetchTcgCompareSubCategories = async (
 export const fetchTcgCompareDeals = async (
   token: string
 ): Promise<Product[]> => {
-  const url = `${TCG_COMPARE_API_ROOT}/products/deals?country=USA&limit=50`;
+  const url = `${TCG_COMPARE_API_ROOT}/products/deals?country=USA&limit=100`;
   const method = "GET";
   return fetchFromApi<Product[]>(url, method, {
     ...TCG_COMPARE_HEADERS,

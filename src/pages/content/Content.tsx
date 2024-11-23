@@ -8,7 +8,7 @@ import { useSession } from "@src/context/SessionContext";
 import { Games } from "@src/components/request/tcgcompare/Games";
 import { Categories } from "@src/components/request/tcgcompare/Categories";
 import { SubCategories } from "@src/components/request/tcgcompare/SubCategories";
-import { Deals } from "@src/components/request/tcgcompare/Deals";
+import { DealsPrices } from "@src/components/request/tcgcompare/DealsPrices";
 import { Prices } from "@src/components/request/tcgcompare/Prices";
 import { PricesHistory } from "@src/components/request/tcgcompare/PricesHistory";
 
@@ -48,9 +48,9 @@ export default function Content(): JSX.Element {
           <Categories />
           <SubCategories />          
           */}
-          <Deals />
-          <Prices />
-          <PricesHistory />
+          <DealsPrices />
+          {/* <Prices />
+          <PricesHistory /> */}
         </>
       )}
     </div>
