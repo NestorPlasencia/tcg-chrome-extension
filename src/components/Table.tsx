@@ -23,7 +23,7 @@ export function Table({ headers, data }: TableProps): JSX.Element {
           <tr key={rowIndex} className="hover:bg-gray-50">
             {row.map((cell, cellIndex) => (
               <td key={cellIndex} className="py-2 px-4 border-b border-gray-200 text-sm text-gray-700">
-                {typeof cell === 'boolean' ? (cell ? 'Yes' : 'No') : cell}
+                {typeof cell === 'boolean' ? (cell ? 'Yes' : 'No') : <span dangerouslySetInnerHTML={{ __html: String(cell) }}></span>}
               </td>
             ))}
           </tr>

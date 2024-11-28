@@ -26,7 +26,7 @@ export default function Content(): JSX.Element {
   };
 
   return (
-    <div className={`bg-white absolute top-5 left-5 p-2 ${isExpanded ? 'w-[600px] h-[600px] overflow-y-scroll' : 'w-[100px] h-[30px]'} z-[999]  break-words`}>
+    <div className={`bg-white absolute top-5 left-5 p-2 ${isExpanded ? 'w-[1500px] h-[600px] overflow-y-scroll' : 'w-[100px] h-[30px]'} z-[999]  break-words`}>
       <button onClick={toggleSize} className="mb-2">
         {isExpanded ? 'Reduce' : 'Expand'}
       </button>
@@ -41,7 +41,7 @@ export default function Content(): JSX.Element {
           <CatalogGroups />
         </>
       )}
-      {isTcgCompareDomain && isExpanded &&(
+      {isTcgCompareDomain && isExpanded && (
         <>
           {/* 
           <Games />

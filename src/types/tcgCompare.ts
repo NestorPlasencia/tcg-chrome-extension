@@ -6,7 +6,6 @@ export interface Game {
 }
 
 export interface Country {
-
   code: string;
   short_code: string;
   currency_code: string;
